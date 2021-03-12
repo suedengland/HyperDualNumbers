@@ -129,4 +129,4 @@ class HyperDualNumber:
 
 
     def __repr__(self):
-        print(f'{self.real}\n{self.eps1}\n{self.eps2}\n{self.eps1eps2}\n')
+        return f'{self.real}\n{self.eps1}\n{self.eps2}\n{self.eps1eps2}\n'

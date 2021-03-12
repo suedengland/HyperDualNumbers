@@ -1,12 +1,16 @@
 import unittest
 
 # Import the class to be tested
-from HyperDualNumber import HyperDualNumber as hdn
+from hyperdualnumber.HyperDualNumber import HyperDualNumber as hdn
 
 class Test_HyperDualNumber(unittest.TestCase):
     """Unit tests for the class 'HyperDualNumber'.
 
-    Usage: python -m unittest -v this_file.py
+    Usage from root directory of this package:
+      python -m unittest test.test_hyperdualnumber -v
+      python -m unittest discover -v
+
+    Omit the '-v' flag, if you do not want verbose output.
 
     Any function starting with 'test_' will be considered as a test case.
     """
