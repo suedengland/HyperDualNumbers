@@ -1,7 +1,8 @@
 import unittest
 
 # Import the class to be tested
-from hyperdualnumber.HyperDualNumber import HyperDualNumber as hdn
+from hyperdualnumber import HyperDualNumber as hdn
+from hyperdualnumber import hdlog, hdexp
 
 class Test_HyperDualNumber(unittest.TestCase):
     """Unit tests for the class 'HyperDualNumber'.
@@ -68,6 +69,26 @@ class Test_HyperDualNumber(unittest.TestCase):
         self.assertEqual(a.eps1, 75.0)
         self.assertEqual(a.eps2, 75.0)
         self.assertEqual(a.eps1eps2, 30.0)
+
+    def test_hdlog(self):
+        import math
+
+        # Initiate y as HyperDualNumber
+        y = hdn(math.exp(1), eps1=1, eps2=1)
+
+        a = hdlog(y)
+        self.assertEqual(a.real, 1.0)
+        self.assertEqual(a.eps1, 1/math.exp(1))
+        self.assertEqual(a.eps2, 1/math.exp(1))
+        self.assertEqual(a.eps1eps2, -1.0/math.exp(1)**2)
+
+    def test_hdexp(self):
+        import math
+        a = hdexp(self.x)
+        self.assertEqual(a.real, math.exp(5))
+        self.assertEqual(a.eps1, math.exp(5))
+        self.assertEqual(a.eps2, math.exp(5))
+        self.assertEqual(a.eps1eps2, math.exp(5))
 
 
 if __name__ == '__main__':
