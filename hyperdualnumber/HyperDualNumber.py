@@ -113,7 +113,7 @@ class HyperDualNumber:
 
     # Power
     def __pow__(self, other):
-        # Float ** HDN
+        # HDN ** HDN
         if isinstance(other, HyperDualNumber):
             raise NotImplementedError  # TODO
         # HDN ** Float
@@ -126,6 +126,83 @@ class HyperDualNumber:
             out_eps2 = self.eps2*deriv1
             out_eps1eps2 = self.eps1eps2*deriv1 + self.eps1*self.eps2*deriv2
             return HyperDualNumber(out_real, out_eps1, out_eps2, out_eps1eps2)
+
+
+    # As the original paper suggests, comparisons should only be carried out on the real part of the HDN
+    # Equal (==)
+    def __eq__(self, other):
+        # HDN == HDN
+        if isinstance(other, HyperDualNumber):
+            return self.real == other.real
+        # HDN == Float
+        else:
+            return self.real == float(other)
+
+    # reverse Equal (cummutative)
+    __req__ = __eq__
+
+
+    # Not equal (!=)
+    def __neq__(self, other):
+        # HDN != HDN
+        if isinstance(other, HyperDualNumber):
+            return self.real != other.real
+        # HDN != Float
+        else:
+            return self.real != float(other)
+
+    # reverse Not equal (cummutative)
+    __rneq__ = __neq__
+
+
+    # Lower than (<)
+    def __lt__(self, other):
+        # HDN < HDN
+        if isinstance(other, HyperDualNumber):
+            return self.real < other.real
+        # HDN < Float
+        else:
+            return self.real < float(other)
+
+    # Greater than (>)
+    def __gt__(self, other):
+        # HDN > HDN
+        if isinstance(other, HyperDualNumber):
+            return self.real > other.real
+        # HDN > Float
+        else:
+            return self.real > float(other)
+
+    # reverse Lower than
+    __rlt__ = __gt__
+
+    # reverse Greater than
+    __rgt__ = __lt__
+
+
+    # Lower equal (<=)
+    def __le__(self, other):
+        # HDN <= HDN
+        if isinstance(other, HyperDualNumber):
+            return self.real <= other.real
+        # HDN <= Float
+        else:
+            return self.real <= float(other)
+
+    # Greater equal (>=)
+    def __ge__(self, other):
+        # HDN >= HDN
+        if isinstance(other, HyperDualNumber):
+            return self.real >= other.real
+        # HDN >= Float
+        else:
+            return self.real >= float(other)
+
+    # reverse Lower equal
+    __rle__ = __ge__
+
+    # reverse Greater equal
+    __rge__ = __le__
 
 
     def __repr__(self):
