@@ -68,12 +68,34 @@ f_pprime = f.eps1eps2/(h1*h2)
 
 Note, that the `eps1eps2` property must not be set when declaring a variable like `x` from the above examples.
 
+Since HyperDualNumbers are designated to be used for calculating gradients and Hessians,
+they may be applied in Newton's method:
+```python
+from hyperdualnumber import find_min_newton
+
+# Initial guess for minimum of the Rosenbrock function
+x0 = [-3.0, 4.0]
+
+# Rosenbrock function defined in a string as a function of an array 'x'
+f = ''
+for l in range(len(x0)-1):
+    f += f' + 100*(x[{l+1}] - x[{l}]**2)**2 + (1 - x[{l}])**2'
+
+xmin, flag, iters, tp = find_min_newton(f, x0)
+
+print(f'Position of critical point: {xmin}')
+print(f'Type of critical point: {tp}')
+print(f"Newton's method converged? {flag}")
+print(f'Solution found in iteration no. {iters}')
+```
+
 
 ## Unit testing
 
-From the package's root directory call one of the following
+From the package's root directory call one or more of the following
 ```bash
 python -m unittest test.test_hyperdualnumber -v
+python -m unittest test.test_newton -v
 python -m unittest discover -v
 ```
 You may omit the `-v` flag, if you do not wish verbose output.
