@@ -4,7 +4,7 @@ from setuptools import setup, find_packages
 
 setup(
     name='HyperDualNumbers',
-    version='0.1.0',
+    version='0.1.1',
     author='Steven Becker',
     author_email='mail-stbe@protonmail.ch',
     packages=find_packages(),

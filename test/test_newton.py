@@ -1,7 +1,6 @@
 import unittest
 
-# Import the class to be tested
-from hyperdualnumber import HyperDualNumber as hdn
+# Import the module to be tested
 from hyperdualnumber import find_min_newton
 
 class Test_Newton(unittest.TestCase):
